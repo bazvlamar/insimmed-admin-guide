@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light}html{-webkit-text-size-adjust:100%}img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+<title>Інструкція адміністратора ІНСІММЕД</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: one readable column like a printed handbook; numbered steps only where order matters; colored stripe = section type */
+:root {
+  --bg: #ffffff;
+  --fg: #23324a;
+  --muted: #5b6b82;
+  --line: #dfe6f1;
+  --soft: #f3f6fb;
+  --blue: #3a68ae;
+  --green: #4f8a26;
+  --yellow: #c9b800;
+  --warn-bg: #fff7d6;
+  --warn-fg: #6b5800;
+  --code-bg: #eef3fa;
+  --font-display: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --font-body: "Open Sans", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121a26; --fg: #e3e9f2; --muted: #9aa8bc; --line: #2a3648; --soft: #18222f;
+    --blue: #7ea6e6; --green: #8cc65a; --yellow: #e2d34d; --warn-bg: #2f2a12; --warn-fg: #ecdf8f; --code-bg: #1d2a3b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121a26; --fg: #e3e9f2; --muted: #9aa8bc; --line: #2a3648; --soft: #18222f;
+  --blue: #7ea6e6; --green: #8cc65a; --yellow: #e2d34d; --warn-bg: #2f2a12; --warn-fg: #ecdf8f; --code-bg: #1d2a3b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16.5px; line-height: 1.65; padding-inline: 18px; padding-block: 0 64px; }
+.wrap { max-width: 760px; margin: 0 auto; }
+header.top { border-bottom: 4px solid var(--yellow); padding-block: 36px 22px; margin-bottom: 8px; }
+.eyebrow { font-family: var(--font-display); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); font-weight: 700; }
+h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 4.5vw, 2.3rem); line-height: 1.2; margin: 8px 0 10px; text-wrap: balance; }
+.lead { color: var(--muted); margin: 0; max-width: 62ch; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+nav.toc a { font-size: 14px; color: var(--blue); text-decoration: none; border: 1px solid var(--line); border-radius: 20px; padding: 4px 12px; background: var(--soft); }
+nav.toc a:hover, nav.toc a:focus-visible { border-color: var(--blue); outline: none; }
+section { padding-block: 26px 6px; border-bottom: 1px solid var(--line); }
+h2 { font-family: var(--font-display); font-size: 1.3rem; margin: 0 0 12px; display: flex; gap: 10px; align-items: baseline; text-wrap: balance; }
+h2 .n { color: var(--blue); font-size: 1rem; min-width: 1.6em; }
+h3 { font-family: var(--font-display); font-size: 1.02rem; margin: 22px 0 8px; }
+p { margin: 0 0 12px; max-width: 68ch; }
+ol, ul { margin: 0 0 14px; padding-left: 1.4em; display: grid; gap: 6px; }
+li { max-width: 66ch; }
+.path { font-family: var(--font-body); font-weight: 600; background: var(--code-bg); border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+.mono { font-family: Consolas, "Courier New", monospace; background: var(--code-bg); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
+.note { background: var(--soft); border-left: 4px solid var(--green); padding: 12px 16px; margin: 6px 0 16px; }
+.warn { background: var(--warn-bg); color: var(--warn-fg); border-left: 4px solid var(--yellow); padding: 12px 16px; margin: 6px 0 16px; }
+.note p:last-child, .warn p:last-child { margin-bottom: 0; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 4px 0 16px; }
+.kv dt { font-weight: 600; }
+.kv dd { margin: 0; min-width: 0; word-break: break-word; }
+.tablewrap { overflow-x: auto; margin: 6px 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 8px 10px; vertical-align: top; }
+th { font-family: var(--font-display); font-size: 13px; color: var(--muted); font-weight: 600; }
+footer { padding-top: 26px; color: var(--muted); font-size: 14px; }
+@media (max-width: 520px) { .kv { grid-template-columns: 1fr; } .kv dd { margin-bottom: 8px; } .path { white-space: normal; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">insimmed.org.ua · для адміністратора</div>
+    <h1>Інструкція адміністратора сайту ІНСІММЕД</h1>
+    <p class="lead">Як увійти на сайт, публікувати заходи БПР і новини, стежити за учасниками електронного курсу та вивантажувати звіт для Центру якості освіти.</p>
+  </header>
+
+  <nav class="toc" aria-label="Зміст">
+    <a href="#vkhid">Вхід</a>
+    <a href="#bezpeka">Чого не робити</a>
+    <a href="#zakhody">Заходи БПР</a>
+    <a href="#novyny">Новини</a>
+    <a href="#storinky">Сторінки</a>
+    <a href="#pereklad">Англійська версія</a>
+    <a href="#dokumenty">Документи провайдера</a>
+    <a href="#kurs">Електронний курс</a>
+    <a href="#zvit">Звіт для БПР</a>
+    <a href="#sertyfikaty">Сертифікати</a>
+    <a href="#dopomoga">Допомога</a>
+  </nav>
+
+  <section id="vkhid">
+    <h2><span class="n">1</span>Перший вхід</h2>
+    <dl class="kv">
+      <dt>Адреса входу</dt><dd><span class="mono">https://insimmed.org.ua/wp-admin</span></dd>
+      <dt>Логін</dt><dd>надіслано Вам технічною підтримкою (можна також входити за своїм email)</dd>
+      <dt>Роль</dt><dd>Адміністратор: повний доступ до сайту</dd>
+    </dl>
+    <p>Пароль ви задаєте самі. Під час першого входу:</p>
+    <ol>
+      <li>Відкрийте <span class="mono">https://insimmed.org.ua/wp-admin</span> і натисніть <span class="path">Забули пароль?</span>.</li>
+      <li>Введіть свій email, на який зареєстровано обліковий запис, і натисніть <span class="path">Отримати новий пароль</span>.</li>
+      <li>Відкрийте лист від сайту (перевірте також «Спам») і перейдіть за посиланням.</li>
+      <li>Задайте надійний пароль і збережіть його в менеджері паролів.</li>
+    </ol>
+  </section>
+
+  <section id="bezpeka">
+    <h2><span class="n">2</span>Чого не робити</h2>
+    <div class="warn">
+      <p><strong>У панелі Hostinger (hpanel.hostinger.com) не натискайте «Редагувати сайт» і «Конструктор ШІ».</strong> Ці кнопки запускають конструктор Hostinger і замінюють оформлення сайту. Сайт редагується тільки через <span class="mono">insimmed.org.ua/wp-admin</span>.</p>
+    </div>
+    <ul>
+      <li>Не видаляйте й не перемикайте теми та плагіни: Kadence, Polylang, Tutor LMS, Cyr-To-Lat.</li>
+      <li>На сторінках «Анонси заходів БПР» і «Проведені заходи БПР» не видаляйте блок-шорткод <span class="mono">[cme_events …]</span>. Саме він виводить картки заходів.</li>
+      <li>Не змінюйте питання підсумкового тесту, коли курс уже проходять. Якщо потрібна зміна, напишіть технічній підтримці.</li>
+    </ul>
+  </section>
+
+  <section id="zakhody">
+    <h2><span class="n">3</span>Як додати анонс заходу БПР</h2>
+    <p>Заходи виводяться на сайті автоматично. Поки дата не минула, захід стоїть в «Анонсах», потім сам переходить у «Проведені заходи».</p>
+    <ol>
+      <li>Ліве меню → <span class="path">Заходи БПР</span> → <span class="path">Додати захід</span>.</li>
+      <li>Напишіть назву заходу, а в основному тексті програму: теми, доповідачів, співорганізаторів.</li>
+      <li>Нижче, у блоці <span class="path">Деталі заходу БПР</span>, заповніть поля: дату початку (і завершення, якщо днів кілька), час, формат, місце або платформу, цільову аудиторію, кількість балів БПР, тривалість, спікерів.</li>
+      <li>У полі <span class="path">Посилання на реєстрацію (Google Form)</span> вставте посилання на форму. На сайті з'явиться кнопка «Зареєструватися».</li>
+      <li>Праворуч у блоці <span class="path">Зображення запису</span> додайте фото або афішу: це обкладинка картки.</li>
+      <li>Натисніть <span class="path">Опублікувати</span>.</li>
+    </ol>
+    <div class="note">
+      <p><strong>Після заходу:</strong> відкрийте його, вставте посилання на запис у поле <span class="path">Запис заходу (YouTube/Vimeo)</span>, додайте фото в текст блоком «Галерея» і натисніть <span class="path">Оновити</span>. На сторінці з'явиться кнопка «Дивитися запис».</p>
+    </div>
+    <p>Для циклів без конкретної дати («щорічно», «щомісячно») залиште дату порожньою і заповніть поле <span class="path">Періодичність</span>.</p>
+  </section>
+
+  <section id="novyny">
+    <h2><span class="n">4</span>Як опублікувати новину</h2>
+    <ol>
+      <li><span class="path">Записи</span> → <span class="path">Додати запис</span>.</li>
+      <li>Напишіть заголовок і текст. Фото додавайте блоком «Зображення» або «Галерея» (кнопка «+» у редакторі).</li>
+      <li>Праворуч задайте <span class="path">Зображення запису</span>: це фото в картці новини на головній.</li>
+      <li>Перевірте, що праворуч у блоці мови стоїть <span class="path">Українська</span>, і натисніть <span class="path">Опублікувати</span>.</li>
+    </ol>
+    <p>Три останні новини автоматично з'являються на головній сторінці.</p>
+  </section>
+
+  <section id="storinky">
+    <h2><span class="n">5</span>Як змінити текст на сторінці</h2>
+    <ol>
+      <li><span class="path">Сторінки</span> → знайдіть сторінку (наприклад, «Наша команда») → <span class="path">Редагувати</span>.</li>
+      <li>Клацніть на текст і змініть його так само, як у Word.</li>
+      <li>Щоб додати фото, натисніть «+» і оберіть «Зображення».</li>
+      <li>Натисніть <span class="path">Оновити</span>.</li>
+    </ol>
+    <p>Якщо щось пішло не так, відкрийте праворуч <span class="path">Редакції</span> і поверніть попередню версію сторінки.</p>
+  </section>
+
+  <section id="pereklad">
+    <h2><span class="n">6</span>Англійська версія</h2>
+    <p>Кожна сторінка, новина й захід мають дві мовні версії, пов'язані між собою. У списку записів є колонки з прапорцями мов.</p>
+    <ul>
+      <li>Олівець у колонці мови відкриває наявний переклад для редагування.</li>
+      <li>Знак «+» створює переклад, якщо його ще немає.</li>
+    </ul>
+    <p>Українська версія — основна. Англійську можна додавати пізніше: поки перекладу немає, перемикач мови веде на головну англійську сторінку.</p>
+  </section>
+
+  <section id="dokumenty">
+    <h2><span class="n">7</span>Документи провайдера БПР</h2>
+    <ol>
+      <li><span class="path">Медіафайли</span> → <span class="path">Додати медіафайл</span> → завантажте PDF.</li>
+      <li><span class="path">Сторінки</span> → «Документи провайдера» → <span class="path">Редагувати</span>.</li>
+      <li>Додайте блок «Файл» (кнопка «+») і оберіть завантажений PDF. Він з'явиться з кнопкою «Завантажити».</li>
+      <li>Натисніть <span class="path">Оновити</span>.</li>
+    </ol>
+    <div class="note">
+      <p>Коли Центр якості освіти надасть номер провайдера і номер реєстрації курсу, повідомте технічну підтримку. Номер треба внести в кілька місць: головна сторінка, сторінка курсу, шаблон сертифіката.</p>
+    </div>
+  </section>
+
+  <section id="kurs">
+    <h2><span class="n">8</span>Електронний курс: учасники</h2>
+    <p>Курс «Ментальне здоров'я та психічні розлади в практиці лікарів різних спеціальностей» розміщено за адресою <span class="mono">insimmed.org.ua/courses/mentalne-zdorovya-ekurs/</span>. Лікарі реєструються самі через кнопку «Вхід для учасників курсів» у шапці сайту.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Що потрібно</th><th>Де в адмінці</th></tr></thead>
+        <tbody>
+          <tr><td>Список учасників курсу</td><td><span class="path">Tutor LMS → Слухачі</span></td></tr>
+          <tr><td>Результати тестування</td><td><span class="path">Tutor LMS → Спроби Тесту</span></td></tr>
+          <tr><td>Дані учасника (ПІБ, місце роботи, спеціальність…)</td><td><span class="path">Користувачі</span> → ім'я → блок «Дані учасника БПР»</td></tr>
+          <tr><td>Виправити ПІБ учасника</td><td><span class="path">Користувачі</span> → ім'я → «Ім'я», «Прізвище», «По батькові» → <span class="path">Оновити</span></td></tr>
+          <tr><td>Усе разом: есе, відгуки, результати</td><td><span class="path">Tutor LMS → Звіт для БПР (Excel)</span>, див. наступний розділ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Як курс влаштований для учасника: уроки проходять по черзі, есе обов'язкові (не менше 100 символів кожне), підсумковий тест (25 питань, 70%, дві спроби) відкривається лише після всіх уроків. Після тесту учасник оцінює курс.</p>
+  </section>
+
+  <section id="zvit">
+    <h2><span class="n">9</span>Звіт для БПР в Excel</h2>
+    <ol>
+      <li>Ліве меню → <span class="path">Tutor LMS</span> → <span class="path">Звіт для БПР (Excel)</span>.</li>
+      <li>Навпроти курсу натисніть <span class="path">Завантажити CSV</span>.</li>
+      <li>Відкрийте файл в Excel подвійним клацанням. Кирилиця відображається правильно, колонки розділені автоматично.</li>
+    </ol>
+    <p>Один рядок — один учасник. У файлі є:</p>
+    <ul>
+      <li>дані з реєстрації: ПІБ, email, дата народження, освіта, місце роботи, посада, спеціальність, телефон, область, населений пункт;</li>
+      <li>дати реєстрації та згоди на обробку даних;</li>
+      <li>прогрес у курсі (%), кількість спроб тесту, найкращий результат, позначка «склав» і дата складання;</li>
+      <li>тексти обох есе;</li>
+      <li>оцінка курсу (1–5) і відгуки.</li>
+    </ul>
+    <p>Щоб зберегти звіт як звичайну таблицю Excel: <span class="path">Файл → Зберегти як → Книга Excel (.xlsx)</span>.</p>
+  </section>
+
+  <section id="sertyfikaty">
+    <h2><span class="n">10</span>Сертифікати</h2>
+    <p>Сертифікати формуватимуться автоматично в Google: унікальний номер, PDF за шаблоном, лист учаснику, журнал видачі в Google-таблиці. Цю частину налаштовує технічна підтримка разом із Вами.</p>
+    <div class="note">
+      <p>Поки курс не підтверджено Центром якості освіти, сертифікати не видаються. Результати всіх, хто склав тест, зберігаються. Після підтвердження сертифікати буде видано всім одразу однією командою.</p>
+    </div>
+  </section>
+
+  <section id="dopomoga">
+    <h2><span class="n">11</span>Корисні поради та допомога</h2>
+    <ul>
+      <li><strong>Відео</strong> не завантажуйте на сайт. Розміщуйте на YouTube або Google Диску і вставляйте посилання. Для Google Диска відкрийте доступ «Усі, хто має посилання — читач».</li>
+      <li><strong>Фото</strong> перед завантаженням бажано зменшити до 1600 пікселів по довшій стороні.</li>
+      <li><strong>Після змін</strong> перевірте сторінку в іншому вікні браузера. Якщо зміни не видно, оновіть сторінку (Ctrl + F5).</li>
+    </ul>
+    <dl class="kv">
+      <dt>Технічна підтримка</dt><dd>Володимир Базилевич</dd>
+      <dt>Зв'язок</dt><dd>контакти — у листі від технічної підтримки</dd>
+    </dl>
+  </section>
+
+  <footer>ГО «Інститут сімейної медицини України» · insimmed.org.ua · інструкцію складено у жовтні 2026 року</footer>
+</div>
+</body>
+</html>
